@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="ur" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماسٹرز ڈیری - تازہ دودھ کی دکان</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu&family=Jameel+Noori+Nastaleeq&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #5a8c5a;
+            --secondary: #8bb78b;
+            --accent: #f0e6d2;
+            --dark: #3a5c3a;
+            --light: #f8f9fa;
+            --gold: #d4af37;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Jameel Noori Nastaleeq', 'Noto Nastaliq Urdu', 'Segoe UI', system-ui, sans-serif;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            color: #333;
+            line-height: 1.8;
+            padding: 15px;
+            min-height: 100vh;
+            direction: rtl;
+            text-align: right;
+            font-size: 18px;
+        }
+        
+        .main-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            height: 100px;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        
+        .main-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s ease;
+            margin-bottom: 30px;
+            border: none;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .main-card {
+                padding: 3rem;
+                border-radius: 25px;
+                margin-bottom: 40px;
+            }
+        }
+        
+        .main-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--gold));
+        }
+        
+        .main-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+        }
+        
+        .card-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 15px 15px 0 0;
+            margin: -2rem -2rem 2rem -2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        @media (min-width: 768px) {
+            .card-header {
+                padding: 2.5rem;
+                margin: -3rem -3rem 2.5rem -3rem;
+                border-radius: 20px 20px 0 0;
+            }
+        }
+        
+        .card-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+        }
+        
+        .card-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        @media (min-width: 768px) {
+            .card-title {
+                font-size: 2.8rem;
+            }
+        }
+        
+        .card-subtitle {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+        
+        .option-card {
+            background: white;
+            border-radius: 18px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            height: 100%;
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            margin-bottom: 25px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .option-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: var(--primary);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .option-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .option-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .option-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .option-icon {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        .option-card:hover .option-icon {
+            transform: scale(1.1);
+            color: var(--dark);
+        }
+        
+        .social-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .social-icon {
+                font-size: 4rem;
+                margin-bottom: 2rem;
+            }
+        }
+        
+        .option-card:hover .social-icon {
+            transform: scale(1.1);
+        }
+        
+        .facebook-card {
+            border-top: 4px solid #3b5998;
+        }
+        
+        .youtube-card {
+            border-top: 4px solid #ff0000;
+        }
+        
+        .instagram-card {
+            border-top: 4px solid #e4405f;
+        }
+        
+        .tiktok-card {
+            border-top: 4px solid #000000;
+        }
+        
+        .btn-option {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            border: none;
+            padding: 14px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            width: 100%;
+            margin-top: 15px;
+            box-shadow: 0 6px 15px rgba(90, 140, 90, 0.3);
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+        
+        .btn-option i {
+            margin-left: 10px;
+            margin-right: 0;
+            font-size: 1.3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .btn-option {
+                padding: 16px 30px;
+                margin-top: 20px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        .btn-option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .btn-option:hover::before {
+            left: 100%;
+        }
+        
+        .btn-option:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(90, 140, 90, 0.4);
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary);
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        @media (min-width: 768px) {
+            .social-link {
+                width: 70px;
+                height: 70px;
+                font-size: 1.7rem;
+            }
+        }
+        
+        .social-link:hover {
+            background: var(--dark);
+            color: white;
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, var(--dark) 0%, #2a452a 100%);
+            color: white;
+            padding: 3rem 0;
+            border-radius: 20px;
+            text-align: center;
+            margin-top: 3rem;
+            position: relative;
+            overflow: hidden;
+            font-size: 1.2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .footer {
+                padding: 4rem 0;
+                border-radius: 25px;
+                margin-top: 4rem;
+            }
+        }
+        
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+        }
+        
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2.2rem;
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .feature-icon {
+                width: 100px;
+                height: 100px;
+                font-size: 2.8rem;
+            }
+        }
+        
+        .product-category:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+            background: var(--primary);
+            color: white;
+        }
+        
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+        
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 12px); }
+            100% { transform: translate(0, -0px); }
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+            100% { transform: scale(1); }
+        }
+        
+        .product-category {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+        }
+        
+        @media (min-width: 768px) {
+            .product-category {
+                margin-bottom: 3rem;
+                padding: 2rem;
+                border-radius: 20px;
+            }
+        }
+        
+        .product-category:hover {
+            background: rgba(90, 140, 90, 0.05);
+            transform: translateY(-5px);
+        }
+        
+        .product-category h3 {
+            color: var(--dark);
+            margin-bottom: 1rem;
+            font-weight: 600;
+            font-size: 1.8rem;
+        }
+        
+        @media (min-width: 768px) {
+            .product-category h3 {
+                font-size: 2.2rem;
+                margin-bottom: 1.5rem;
+            }
+        }
+        
+        .product-category p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 1.3rem;
+            line-height: 1.8;
+        }
+        
+        .hero-content {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            border-radius: 25px;
+            background: white;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+        }
+        
+        @media (min-width: 768px) {
+            .hero-content {
+                padding: 3rem;
+                border-radius: 30px;
+                margin-bottom: 4rem;
+            }
+        }
+        
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--dark));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.6rem;
+            color: #666;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-right: auto;
+            margin-left: auto;
+            line-height: 1.8;
+        }
+        
+        .social-card .btn-option {
+            background: transparent;
+            border: 3px solid;
+            font-weight: 600;
+            box-shadow: none;
+            font-size: 1.3rem;
+        }
+        
+        .facebook-card .btn-option {
+            color: #3b5998;
+            border-color: #3b5998;
+        }
+        
+        .facebook-card .btn-option:hover {
+            background: #3b5998;
+            color: white;
+            box-shadow: 0 8px 20px rgba(59, 89, 152, 0.4);
+        }
+        
+        .youtube-card .btn-option {
+            color: #ff0000;
+            border-color: #ff0000;
+        }
+        
+        .youtube-card .btn-option:hover {
+            background: #ff0000;
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 0, 0, 0.4);
+        }
+        
+        .instagram-card .btn-option {
+            color: #e4405f;
+            border-color: #e4405f;
+        }
+        
+        .instagram-card .btn-option:hover {
+            background: #e4405f;
+            color: white;
+            box-shadow: 0 8px 20px rgba(228, 64, 95, 0.4);
+        }
+        
+        .tiktok-card .btn-option {
+            color: #000000;
+            border-color: #000000;
+        }
+        
+        .tiktok-card .btn-option:hover {
+            background: #000000;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .facebook-card .social-icon {
+            color: #3b5998;
+        }
+        
+        .youtube-card .social-icon {
+            color: #ff0000;
+        }
+        
+        .instagram-card .social-icon {
+            color: #e4405f;
+        }
+        
+        .tiktok-card .social-icon {
+            color: #000000;
+        }
+        
+        .products-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 25px;
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+            font-size: 1.3rem;
+        }
+        
+        @media (min-width: 768px) {
+            .products-table {
+                font-size: 1.4rem;
+                border-radius: 20px;
+                margin-top: 30px;
+            }
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .products-table th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            padding: 18px 20px;
+            text-align: right;
+            font-weight: 600;
+            font-size: 1.4rem;
+        }
+        
+        @media (min-width: 768px) {
+            .products-table th {
+                padding: 20px 25px;
+                font-size: 1.5rem;
+            }
+        }
+        
+        .products-table td {
+            padding: 18px 20px;
+            border-bottom: 1px solid #f0f0f0;
+            transition: all 0.2s ease;
+            text-align: right;
+            font-size: 1.2rem;
+        }
+        
+        @media (min-width: 768px) {
+            .products-table td {
+                padding: 20px 25px;
+                font-size: 1.3rem;
+            }
+        }
+        
+        .products-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .products-table tr:hover td {
+            background: rgba(90, 140, 90, 0.05);
+        }
+        
+        .price {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.4rem;
+        }
+        
+        .show-products-btn {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--dark) 100%);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            margin: 25px auto;
+            font-size: 1.5rem;
+            box-shadow: 0 8px 25px rgba(90, 140, 90, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .show-products-btn i {
+            margin-left: 12px;
+            margin-right: 0;
+            font-size: 1.6rem;
+        }
+        
+        @media (min-width: 768px) {
+            .show-products-btn {
+                padding: 20px 50px;
+                margin: 30px auto;
+                font-size: 1.6rem;
+            }
+        }
+        
+        .show-products-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transition: all 0.5s ease;
+        }
+        
+        .show-products-btn:hover::before {
+            left: 100%;
+        }
+        
+        .show-products-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(90, 140, 90, 0.5);
+        }
+        
+        .product-section-content {
+            text-align: center;
+        }
+        
+        .product-section-content p {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .availability {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        @media (min-width: 768px) {
+            .availability {
+                padding: 10px 18px;
+                font-size: 1.2rem;
+            }
+        }
+        
+        .in-stock {
+            background: rgba(37, 211, 102, 0.15);
+            color: #25d366;
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 767px) {
+            .table-responsive {
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            
+            .products-table {
+                min-width: 550px;
+            }
+            
+            .g-4 {
+                --bs-gutter-x: 1.5rem;
+            }
+            
+            body {
+                font-size: 16px;
+            }
+        }
+        
+        /* Improved touch targets for mobile */
+        @media (max-width: 767px) {
+            .btn-option, .show-products-btn, .social-link {
+                min-height: 50px;
+            }
+        }
+
+        /* RTL specific adjustments */
+        .row {
+            direction: rtl;
+        }
+        
+        .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12,
+        .col-sm-1, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-sm-10, .col-sm-11, .col-sm-12,
+        .col-md-1, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-md-10, .col-md-11, .col-md-12,
+        .col-lg-1, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-lg-10, .col-lg-11, .col-lg-12,
+        .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12 {
+            float: right;
+        }
+        
+        h5 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+        }
+        
+        .option-card p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+        }
+        
+        .email-btn {
+            font-size: 1.1rem !important;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="main-container">
+        <!-- Hero Section -->
+        <div class="hero-content">
+            <img src="https://cdn-icons-png.flaticon.com/512/2917/2917637.png" alt="ماسٹرز ڈیری لوگو" class="logo floating">
+            <h1 class="hero-title">ماسٹرز ڈیری</h1>
+            <p class="hero-subtitle">تازہ اور صاف دودھ اور دودھ کی چیزیں۔ گھر پر ڈیلیوری</p>
+        </div>
+
+        <!-- Our Products Card -->
+        <div class="main-card">
+            <div class="card-header">
+                <h2 class="card-title">ہماری چیزیں</h2>
+                <p class="card-subtitle">ہماری تازہ ڈیری مصنوعات</p>
+            </div>
+            <div class="product-section-content">
+                <p>ہماری تمام چیزیں اور قیمتیں دیکھنے کے لیے نیچے والے بٹن پر کلک کریں</p>
+                <button class="show-products-btn pulse" id="showProductsBtn">
+                    <i class="fas fa-list"></i> تمام چیزیں دیکھیں
+                </button>
+                
+                <div class="table-responsive">
+                    <table class="products-table" id="productsTable">
+                        <thead>
+                            <tr>
+                                <th>چیز کا نام</th>
+                                <th>مقدار</th>
+                                <th>قیمت</th>
+                                <th>دستیابی</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>تازہ گائے کا دودھ</td>
+                                <td>1 لیٹر</td>
+                                <td class="price">250 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                            <tr>
+                                <td>دہی</td>
+                                <td>500 گرام</td>
+                                <td class="price">180 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                            <tr>
+                                <td>پنیر</td>
+                                <td>250 گرام</td>
+                                <td class="price">400 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                            <tr>
+                                <td>مکھن</td>
+                                <td>500 گرام</td>
+                                <td class="price">900 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                            <tr>
+                                <td>کریم</td>
+                                <td>250 ملی لیٹر</td>
+                                <td class="price">200 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                            <tr>
+                                <td>مٹھا دودھ</td>
+                                <td>1 لیٹر</td>
+                                <td class="price">300 روپے</td>
+                                <td><span class="availability in-stock">دستیاب</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Options Card -->
+        <div class="main-card">
+            <div class="card-header">
+                <h2 class="card-title">پیسے دینے کے طریقے</h2>
+                <p class="card-subtitle">آسان اور محفوظ ادائیگی</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h5>جاز کیش</h5>
+                        <p class="mb-3">موبائل سے پیسے بھریں</p>
+                        <a href="https://www.jazzcash.com.pk" target="_blank" class="btn-option">ادائیگی کریں</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h5>ایزی پیسہ</h5>
+                        <p class="mb-3">ایزی پیسہ سے پیسے دیں</p>
+                        <a href="https://www.easypaisa.com.pk" target="_blank" class="btn-option">ادائیگی کریں</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-4">
+                    <div class="option-card">
+                        <div class="option-icon">
+                            <i class="fas fa-credit-card"></i>
+                        </div>
+                        <h5>بینک</h5>
+                        <p class="mb-3">بینک سے پیسے بھیجیں</p>
+                        <a href="https://online.bankalfalah.com" target="_blank" class="btn-option">ادائیگی کریں</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contact Us Card -->
+        <div class="main-card">
+            <div class="card-header">
+                <h2 class="card-title">ہم سے بات کریں</h2>
+                <p class="card-subtitle">ہمارے ساتھ رابطہ کریں</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-4">
+                    <div class="option-card h-100">
+                        <div class="option-icon">
+                            <i class="fas fa-phone-alt"></i>
+                        </div>
+                        <h5>فون کریں</h5>
+                        <p class="mb-3">ہم ہر روز دستیاب ہیں</p>
+                        <a href="tel:+9230102851910" class="btn-option">0310-2851910</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="option-card h-100">
+                        <div class="option-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h5>ای میل کریں</h5>
+                        <p class="mb-3">اپنا مسلہ بھیجیں</p>
+                        <a href="mailto:muhammadrayan182@gmail.com" class="btn-option email-btn">muhammadrayan182@gmail.com</a>
+                    </div>
+                </div>
+                <div class="col-12 col-md-4">
+                    <div class="option-card h-100">
+                        <div class="option-icon">
+                            <i class="fab fa-whatsapp"></i>
+                        </div>
+                        <h5>واٹس ایپ</h5>
+                        <p class="mb-3">براہ راست بات کریں</p>
+                        <a href="https://api.whatsapp.com/send?phone=923318988032" target="_blank" class="btn-option">میسج کریں</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Follow Us Card -->
+        <div class="main-card">
+            <div class="card-header">
+                <h2 class="card-title">ہمیں فالو کریں</h2>
+                <p class="card-subtitle">سوشل میڈیا پر جڑے رہیں</p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="option-card social-card facebook-card">
+                        <div class="social-icon">
+                            <i class="fab fa-facebook"></i>
+                        </div>
+                        <h5>فیس بک</h5>
+                        <p class="mb-3">نئی چیزیں دیکھیں</p>
+                        <a href="https://www.facebook.com/share/17FsgLrVsm/" target="_blank" class="btn-option">فالو کریں</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="option-card social-card youtube-card">
+                        <div class="social-icon">
+                            <i class="fab fa-youtube"></i>
+                        </div>
+                        <h5>یوٹیوب</h5>
+                        <p class="mb-3">ہماری ویڈیوز دیکھیں</p>
+                        <a href="https://youtube.com/@rayan1841?si=4Sf73rGv2tw47UXc" target="_blank" class="btn-option">سبسکرائب کریں</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="option-card social-card instagram-card">
+                        <div class="social-icon">
+                            <i class="fab fa-instagram"></i>
+                        </div>
+                        <h5>انسٹاگرام</h5>
+                        <p class="mb-3">تصاویر دیکھیں</p>
+                        <a href="https://www.instagram.com/muhmmad_rayan171/" target="_blank" class="btn-option">فالو کریں</a>
+                    </div>
+                </div>
+                <div class="col-12 col-sm-6 col-lg-3">
+                    <div class="option-card social-card tiktok-card">
+                        <div class="social-icon">
+                            <i class="fab fa-tiktok"></i>
+                        </div>
+                        <h5>ٹک ٹاک</h5>
+                        <p class="mb-3">ہمارے ویڈیوز دیکھیں</p>
+                        <a href="https://www.tiktok.com" target="_blank" class="btn-option">فالو کریں</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <div class="container">
+                <img src="https://cdn-icons-png.flaticon.com/512/2917/2917637.png" alt="ماسٹرز ڈیری لوگو" height="70" class="mb-3">
+                <p class="mb-2">تازہ ڈیری چیزیں گھر پر پہنچائی جاتی ہیں</p>
+                <p>© 2023 ماسٹرز ڈیری۔ تمام حقوق محفوظ ہیں۔</p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const showProductsBtn = document.getElementById('showProductsBtn');
+            const productsTable = document.getElementById('productsTable');
+            
+            showProductsBtn.addEventListener('click', function() {
+                if (productsTable.style.display === 'none' || productsTable.style.display === '') {
+                    productsTable.style.display = 'table';
+                    showProductsBtn.innerHTML = '<i class="fas fa-times"></i> چیزیں چھپائیں';
+                    showProductsBtn.classList.remove('pulse');
+                } else {
+                    productsTable.style.display = 'none';
+                    showProductsBtn.innerHTML = '<i class="fas fa-list"></i> تمام چیزیں دیکھیں';
+                    showProductsBtn.classList.add('pulse');
+                }
+            });
+        });
+    </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
